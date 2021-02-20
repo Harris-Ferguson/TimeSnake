@@ -6,10 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     
     public MovementManager mover;
+    public int powerupsMax;
+
+
     private Vector2 moveDir;
     private List<PowerUp> powerups = new List<PowerUp>();
-    private PowerUp lastPowerUp;
-
+    private PowerUp currentPowerup;
     private List<List<Transform>> history = new List<List<Transform>>();
     private Ability state = Ability.NONE;
 
@@ -57,6 +59,7 @@ public class PlayerController : MonoBehaviour
                 break;
             }
         }
+        // as long as we aren't rewining keep track of our movement history
         if (state != Ability.REWIND)
         {
             history.Insert(0, mover.GetSnake());
@@ -68,9 +71,23 @@ public class PlayerController : MonoBehaviour
         //collect power ups
         if (collision.gameObject.CompareTag("PowerUp"))
         {
+            PowerUp powerup = collision.gameObject.GetComponent<PowerUp>();
             mover.SetAte();
-            powerups.Add(collision.gameObject.AddComponent<PowerUp>());
-            lastPowerUp = collision.gameObject.AddComponent<PowerUp>();
+            if(currentPowerup.type == Ability.NONE)
+            {
+                currentPowerup = new PowerUp(powerup.type);
+                powerups.Add(new PowerUp(powerup.type));
+            }
+            else if(powerup.type == currentPowerup.type && powerups.Count < powerupsMax)
+            {
+                powerups.Add(new PowerUp(powerup.type));
+            }
+            else
+            {
+                powerups.Clear();
+                powerups.Add(new PowerUp(powerup.type));
+            }
+            Destroy(collision.gameObject);
         }
     }
 
