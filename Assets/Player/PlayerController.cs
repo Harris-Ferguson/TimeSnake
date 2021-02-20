@@ -7,10 +7,13 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
 
     public float gridSize;
+    public GameObject tailPrefab;
 
     private Vector2 moveDir;
-
-
+    private List<Transform> tail = new List<Transform>();
+    private List<GameObject> powerups = new List<GameObject>();
+    private bool ate;
+    private GameObject lastHitPowerup;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +25,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         HandleInput();
+    }
+
+    public GameObject instancePlayer()
+    {
+
     }
 
     private void FixedUpdate()
@@ -51,8 +59,42 @@ public class PlayerController : MonoBehaviour
 
     public void MovePlayer()
     {
+        Vector2 savePos = transform.position;
         transform.Translate(moveDir * gridSize);
+        // if we have a tail move the last element to the front
+        if (ate)
+        {
+            //first add a new body part to the snake
+            GameObject newPart = Instantiate(tailPrefab, savePos, Quaternion.identity);
+            tail.Insert(0, newPart.transform);
+
+            // reset the ate flag
+            ate = false;
+            handlePowerups();
+        }
+        else if(tail.Count > 0)
+        {
+            Transform last = tail[tail.Count - 1];
+            last.transform.position = savePos;
+            tail.RemoveAt(tail.Count - 1);
+            tail.Insert(0, last);
+        }
     }
 
+    private void handlePowerups()
+    {
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        print(collision.gameObject);
+        //collect power ups
+        if (collision.gameObject.CompareTag("PowerUp"))
+        {
+            ate = true;
+            lastHitPowerup = collision.gameObject;
+        }
+    }
 
 }
