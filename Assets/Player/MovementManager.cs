@@ -105,4 +105,9 @@ public class MovementManager : MonoBehaviour
         collider.size = new Vector2(gridSize - tailSizeOffset, gridSize - tailSizeOffset);
         tail.Insert(0, newTail.transform);
     }
+
+    public int snakeLength()
+    {
+        return tail.Count + 1;
+    }
 }
