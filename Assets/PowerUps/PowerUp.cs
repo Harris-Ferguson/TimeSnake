@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum Ability
 {
-    NONE, REWIND, FREEZE, ASSGROW, BLUESHELL, FAST, SLOW
+    NONE, REWIND, FREEZE, ASSGROW, BLUESHELL, FAST, SLOW, HEADASS
 }
 
 public class PowerUp : MonoBehaviour
