@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7386409336685282255}
   - component: {fileID: 7386409336685282248}
   - component: {fileID: 7386409336685282253}
+  - component: {fileID: 3408777299917151639}
   m_Layer: 0
   m_Name: playerPrefab
   m_TagString: Untagged
@@ -46,10 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 811b52855a78845a3a453f6a72f4c154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  gridSize: 1
-  tailPrefab: {fileID: 7929427591167525808, guid: bce9e3958e2d64085bb88614272c0aed,
-    type: 3}
+  mover: {fileID: 3408777299917151639}
 --- !u!61 &7386409336685282248
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -97,6 +95,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3408777299917151639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7386409336685282249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76836e95403c649b08e8ec996df50a7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tailPrefab: {fileID: 7929427591167525808, guid: bce9e3958e2d64085bb88614272c0aed,
+    type: 3}
+  gridSize: 2
 --- !u!1 &7386409337470005221
 GameObject:
   m_ObjectHideFlags: 0
