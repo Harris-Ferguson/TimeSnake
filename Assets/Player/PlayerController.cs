@@ -25,10 +25,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         HandleInput();
-        foreach(PowerUp power in powerups)
-        {
-            print(power.type);
-        }
     }
 
     private void FixedUpdate()
