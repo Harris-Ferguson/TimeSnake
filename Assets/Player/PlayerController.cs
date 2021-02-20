@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public int powerupsMax;
     public int rewindFrames = 3;
     public int poweredUpFrames = 30;
+    public float moveTicks = 0.5f;
 
 
     private Vector2 moveDir;
@@ -22,9 +23,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("MovePlayer", 0, 0.5f);
         state = Ability.NONE;
         currentPowerup = new PowerUp(Ability.NONE);
+        StartCoroutine(MovePlayer());
     }
 
     // Update is called once per frame
@@ -50,30 +51,44 @@ public class PlayerController : MonoBehaviour
         state = Ability.NONE;
     }
 
-    public void MovePlayer()
-    {
+    public IEnumerator MovePlayer()
+    { 
         switch (state)
         {
             case Ability.NONE:
             {
                 mover.NormalMove(moveDir);
+                addHisory();
+                yield return new WaitForSeconds(moveTicks);
                 break;
             }
             case Ability.REWIND:
             {
+                yield return new WaitForSeconds(moveTicks);
                 break;
             }
             case Ability.FAST:
             {
-                mover.DoubleMove(moveDir);
+                mover.NormalMove(moveDir);
+                addHisory();
+                yield return new WaitForSeconds(moveTicks / 2);
                 break;
             }
         }
+        StartCoroutine(MovePlayer());
+    }
+
+    private void addHisory()
+    {
         // as long as we aren't rewining keep track of our movement history
         if (state != Ability.REWIND)
         {
             history.Insert(0, mover.GetSnake());
         }
+    }
+
+    private void checkPowerups()
+    {
         //check if we should be powered up next step
         if (poweredUp)
         {
