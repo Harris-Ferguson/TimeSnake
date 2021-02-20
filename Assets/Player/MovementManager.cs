@@ -9,7 +9,7 @@ public class MovementManager : MonoBehaviour
     public float tailSizeOffset = 0.3f;
 
 
-    private List<Transform> tail = new List<Transform>();
+    public List<Transform> tail = new List<Transform>();
     private bool ate;
 
     // Start is called before the first frame update

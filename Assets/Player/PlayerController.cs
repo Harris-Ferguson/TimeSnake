@@ -126,11 +126,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void dead()
-    {
-
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //collect power ups
@@ -176,7 +171,20 @@ public class PlayerController : MonoBehaviour
 
     public void die()
     {
+        //set our state to dead
         state = Ability.DEAD;
+
+        //disable collision boxes
+        BoxCollider2D[] hitboxes = GetComponents<BoxCollider2D>();
+        foreach(BoxCollider2D hitbox in hitboxes)
+        {
+            hitbox.enabled = false;
+        }
+        foreach(Transform tailPiece in mover.tail)
+        {
+            BoxCollider2D hitbox = tailPiece.GetComponent<BoxCollider2D>();
+            hitbox.enabled = false;
+        }
     }
 
     private void HandleInput()
