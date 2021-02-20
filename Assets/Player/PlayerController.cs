@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     
     public MovementManager mover;
     public int powerupsMax;
+    public int rewindFrames = 3;
+    public int poweredUpFrames = 30;
 
 
     private Vector2 moveDir;
@@ -14,12 +16,15 @@ public class PlayerController : MonoBehaviour
     private PowerUp currentPowerup;
     private List<List<Transform>> history = new List<List<Transform>>();
     private Ability state = Ability.NONE;
+    private bool poweredUp;
+    private int currentPoweredFrame;
 
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("MovePlayer", 0, 0.5f);
         state = Ability.NONE;
+        currentPowerup = new PowerUp(Ability.NONE);
     }
 
     // Update is called once per frame
@@ -58,11 +63,26 @@ public class PlayerController : MonoBehaviour
             {
                 break;
             }
+            case Ability.FAST:
+            {
+                mover.DoubleMove(moveDir);
+                break;
+            }
         }
         // as long as we aren't rewining keep track of our movement history
         if (state != Ability.REWIND)
         {
             history.Insert(0, mover.GetSnake());
+        }
+        //check if we should be powered up next step
+        if (poweredUp)
+        {
+            currentPoweredFrame++;
+            if(currentPoweredFrame >= poweredUpFrames)
+            {
+                poweredUp = false;
+                state = Ability.NONE;
+            }
         }
     }
 
@@ -115,8 +135,21 @@ public class PlayerController : MonoBehaviour
         //ability input
         if (Input.GetButtonDown("Fire1"))
         {
-            state = Ability.REWIND;
-            StartCoroutine(rewind(5, 0.2f));
+            if(powerups.Count < powerupsMax && powerups.Count > 0)
+            {
+                state = Ability.REWIND;
+                StartCoroutine(rewind(rewindFrames, 0.2f));
+            }
+            if(powerups.Count <= 0)
+            {
+                return;
+            }
+            else
+            {
+                state = currentPowerup.type;
+                poweredUp = true;
+                currentPoweredFrame = 0;
+            }
         }
     }
 }

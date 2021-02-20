@@ -46,6 +46,13 @@ public class MovementManager : MonoBehaviour
         }
     }
 
+    public void DoubleMove(Vector2 moveDir)
+    {
+        NormalMove(moveDir);
+        NormalMove(moveDir);
+    }
+
+
     // Deletes our current position and renders the given snake as a list of positions
     public void RenderSnake(List<Transform> snake)
     {
