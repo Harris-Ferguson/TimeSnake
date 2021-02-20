@@ -65,7 +65,6 @@ public class PlayerController : MonoBehaviour
 
             // reset the ate flag
             ate = false;
-            handlePowerups();
         }
         else if(tail.Count > 0)
         {
@@ -74,11 +73,6 @@ public class PlayerController : MonoBehaviour
             tail.RemoveAt(tail.Count - 1);
             tail.Insert(0, last);
         }
-    }
-
-    private void handlePowerups()
-    {
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
