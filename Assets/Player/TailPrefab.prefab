@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7860010998359433413}
   m_Layer: 0
   m_Name: TailPrefab
-  m_TagString: Snake
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

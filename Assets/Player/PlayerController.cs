@@ -35,11 +35,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         HandleInput();
-        foreach(PowerUp power in powerups)
-        {
-            print(power.type);
-        }
-        print(powerups.Count);
     }
 
     private void FixedUpdate()
@@ -159,11 +154,29 @@ public class PlayerController : MonoBehaviour
             }
             Destroy(collision.gameObject);
         }
+        // die if we hit a non head part of any snake
+        else if (collision.gameObject.CompareTag("Tail"))
+        {
+            die();
+        }
         else if (collision.gameObject.CompareTag("Snake"))
         {
-            state = Ability.DEAD;
-            print("Hit a snake piece!");
+            int otherLength = collision.gameObject.GetComponent<MovementManager>().snakeLength();
+            if(otherLength >= this.mover.snakeLength())
+            {
+                die();
+            }
+            else
+            {
+                collision.gameObject.GetComponent<PlayerController>().die();
+            }
         }
+    }
+
+
+    public void die()
+    {
+        state = Ability.DEAD;
     }
 
     private void HandleInput()
