@@ -6,9 +6,10 @@ public class MovementManager : MonoBehaviour
 {
     public GameObject tailPrefab;
     public float gridSize = 2;
+    public float tailSizeOffset = 0.3f;
 
 
-    private List<Transform> tail = new List<Transform>();
+    public List<Transform> tail = new List<Transform>();
     private bool ate;
 
     // Start is called before the first frame update
@@ -31,8 +32,7 @@ public class MovementManager : MonoBehaviour
         if (ate)
         {
             //first add a new body part to the snake
-            GameObject newPart = Instantiate(tailPrefab, savePos, Quaternion.identity);
-            tail.Insert(0, newPart.transform);
+            createTail(savePos);
 
             // reset the ate flag
             ate = false;
@@ -43,6 +43,20 @@ public class MovementManager : MonoBehaviour
             last.transform.position = savePos;
             tail.RemoveAt(tail.Count - 1);
             tail.Insert(0, last);
+        }
+    }
+
+    public void AssGrowMove(Vector2 moveDir)
+    {
+        Vector2 savePos = transform.position;
+        transform.Translate(moveDir * gridSize);
+        if (ate)
+        {
+            ate = false;
+        }
+        if(tail.Count > 0)
+        {
+            createTail(savePos);
         }
     }
 
@@ -60,8 +74,7 @@ public class MovementManager : MonoBehaviour
         snake.RemoveAt(0);
         foreach(Transform pos in snake)
         {
-            GameObject newPart = Instantiate(tailPrefab, pos.position, Quaternion.identity);
-            tail.Insert(0, newPart.transform);
+            createTail(pos.position);
         }
     }
 
@@ -83,5 +96,18 @@ public class MovementManager : MonoBehaviour
             snake.Add(newObj.transform);
         }
         return snake;
+    }
+
+    private void createTail(Vector2 pos)
+    {
+        GameObject newTail = Instantiate(tailPrefab, pos, Quaternion.identity);
+        BoxCollider2D collider = newTail.GetComponent<BoxCollider2D>();
+        collider.size = new Vector2(gridSize - tailSizeOffset, gridSize - tailSizeOffset);
+        tail.Insert(0, newTail.transform);
+    }
+
+    public int snakeLength()
+    {
+        return tail.Count + 1;
     }
 }

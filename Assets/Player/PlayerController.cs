@@ -6,7 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     
     public MovementManager mover;
-    public int powerupsMax;
+    public int powerupsMax = 3;
+    public int rewindFrames = 3;
+    public int poweredUpFrames = 30;
+    public float moveTicks = 0.5f;
+    public string verticalInputName;
+    public string horizontalInputName;
+    public string inputFireName;
 
 
     private Vector2 moveDir;
@@ -14,12 +20,15 @@ public class PlayerController : MonoBehaviour
     private PowerUp currentPowerup;
     private List<List<Transform>> history = new List<List<Transform>>();
     private Ability state = Ability.NONE;
+    private bool poweredUp;
+    private int currentPoweredFrame;
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("MovePlayer", 0, 0.5f);
         state = Ability.NONE;
+        currentPowerup = new PowerUp(Ability.NONE);
+        StartCoroutine(MovePlayer());
     }
 
     // Update is called once per frame
@@ -45,24 +54,75 @@ public class PlayerController : MonoBehaviour
         state = Ability.NONE;
     }
 
-    public void MovePlayer()
-    {
+    public IEnumerator MovePlayer()
+    { 
         switch (state)
         {
             case Ability.NONE:
             {
                 mover.NormalMove(moveDir);
+                yield return new WaitForSeconds(moveTicks);
                 break;
             }
             case Ability.REWIND:
             {
+                yield return new WaitForSeconds(moveTicks);
+                break;
+            }
+            /*
+             * for fast and slow, we just need to reinvoke this coroutine with
+            *  a different tick rate
+            */
+            case Ability.FAST:
+            {
+                mover.NormalMove(moveDir);
+                yield return new WaitForSeconds(moveTicks / 2);
+                break;
+            }
+            case Ability.SLOW:
+            {
+                mover.NormalMove(moveDir);
+                yield return new WaitForSeconds(moveTicks * 2);
+                break;
+            }
+            case Ability.FREEZE:
+            {
+                yield return new WaitForSeconds(moveTicks);
+                break;
+            }
+            case Ability.ASSGROW:
+            {
+                mover.AssGrowMove(moveDir);
+                yield return new WaitForSeconds(moveTicks);
+                break;
+            }
+            case Ability.DEAD:
+            {
+                yield return new WaitForSeconds(moveTicks);
                 break;
             }
         }
-        // as long as we aren't rewining keep track of our movement history
-        if (state != Ability.REWIND)
+        checkPowerups();
+        if(state != Ability.REWIND) addHisory();
+        StartCoroutine(MovePlayer());
+    }
+
+    private void addHisory()
+    { 
+        history.Insert(0, mover.GetSnake());
+    }
+
+    private void checkPowerups()
+    {
+        //check if we should be powered up next step
+        if (poweredUp)
         {
-            history.Insert(0, mover.GetSnake());
+            currentPoweredFrame++;
+            if(currentPoweredFrame >= poweredUpFrames)
+            {
+                poweredUp = false;
+                state = Ability.NONE;
+            }
         }
     }
 
@@ -89,34 +149,90 @@ public class PlayerController : MonoBehaviour
             }
             Destroy(collision.gameObject);
         }
+        // die if we hit a non head part of any snake
+        else if (collision.gameObject.CompareTag("Tail"))
+        {
+            die();
+        }
+        else if (collision.gameObject.CompareTag("Snake"))
+        {
+            int otherLength = collision.gameObject.GetComponent<MovementManager>().snakeLength();
+            if(otherLength >= this.mover.snakeLength())
+            {
+                die();
+            }
+            else
+            {
+                collision.gameObject.GetComponent<PlayerController>().die();
+            }
+        }
+    }
+
+
+    public void die()
+    {
+        //set our state to dead
+        state = Ability.DEAD;
+
+        //disable collision boxes
+        BoxCollider2D[] hitboxes = GetComponents<BoxCollider2D>();
+        foreach(BoxCollider2D hitbox in hitboxes)
+        {
+            hitbox.enabled = false;
+        }
+        foreach(Transform tailPiece in mover.tail)
+        {
+            BoxCollider2D hitbox = tailPiece.GetComponent<BoxCollider2D>();
+            hitbox.enabled = false;
+        }
+    }
+
+    public void fullRewind()
+    {
+        StartCoroutine(rewind(history.Count, 0.2f));
     }
 
     private void HandleInput()
     {
     
         //Movement Input
-        if(Input.GetAxis("Horizontal") < 0)
+        if(Input.GetAxis(horizontalInputName) < 0)
         {
             moveDir = Vector2.left;
         }
-        else if(Input.GetAxis("Horizontal") > 0)
+        else if(Input.GetAxis(horizontalInputName) > 0)
         {
             moveDir = Vector2.right;
         }
-        else if(Input.GetAxis("Vertical") > 0)
+        else if(Input.GetAxis(verticalInputName) > 0)
         {
             moveDir = Vector2.up;
         }
-        else if (Input.GetAxis("Vertical") < 0)
+        else if (Input.GetAxis(verticalInputName) < 0)
         {
             moveDir = Vector2.down;
         }
 
         //ability input
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown(inputFireName))
         {
-            state = Ability.REWIND;
-            StartCoroutine(rewind(5, 0.2f));
+            if(powerups.Count < powerupsMax && powerups.Count > 0)
+            {
+                state = Ability.REWIND;
+                StartCoroutine(rewind(rewindFrames, 0.2f));
+                powerups.Clear();
+            }
+            else if(powerups.Count <= 0)
+            {
+                return;
+            }
+            else
+            {
+                state = currentPowerup.type;
+                poweredUp = true;
+                currentPoweredFrame = 0;
+                powerups.Clear();
+            }
         }
     }
 }

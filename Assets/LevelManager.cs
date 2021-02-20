@@ -2,21 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Ability
+public class LevelManager : MonoBehaviour
 {
-    NONE, REWIND, FREEZE, ASSGROW, BLUESHELL, FAST, SLOW, DEAD
-}
-
-public class PowerUp : MonoBehaviour
-{
-
-    public Ability type;
-
-    public PowerUp(Ability type)
-    {
-        this.type = type;
-    }
-    
     // Start is called before the first frame update
     void Start()
     {
