@@ -11,9 +11,9 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 moveDir;
     private List<Transform> tail = new List<Transform>();
-    private List<GameObject> powerups = new List<GameObject>();
+    private List<PowerUp> powerups = new List<PowerUp>();
+    private PowerUp lastPowerUp;
     private bool ate;
-    private GameObject lastHitPowerup;
 
     // Start is called before the first frame update
     void Start()
@@ -25,11 +25,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         HandleInput();
-    }
-
-    public GameObject instancePlayer()
-    {
-
+        foreach(PowerUp power in powerups)
+        {
+            print(power.type);
+        }
     }
 
     private void FixedUpdate()
@@ -88,12 +87,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print(collision.gameObject);
         //collect power ups
         if (collision.gameObject.CompareTag("PowerUp"))
         {
             ate = true;
-            lastHitPowerup = collision.gameObject;
+            powerups.Add(collision.gameObject.AddComponent<PowerUp>());
+            lastPowerUp = collision.gameObject.AddComponent<PowerUp>();
         }
     }
 
