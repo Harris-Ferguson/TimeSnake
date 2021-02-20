@@ -58,7 +58,6 @@ public class PlayerController : MonoBehaviour
             case Ability.NONE:
             {
                 mover.NormalMove(moveDir);
-                addHisory();
                 yield return new WaitForSeconds(moveTicks);
                 break;
             }
@@ -67,24 +66,42 @@ public class PlayerController : MonoBehaviour
                 yield return new WaitForSeconds(moveTicks);
                 break;
             }
+            /*
+             * for fast and slow, we just need to reinvoke this coroutine with
+            *  a different tick rate
+            */
             case Ability.FAST:
             {
                 mover.NormalMove(moveDir);
-                addHisory();
                 yield return new WaitForSeconds(moveTicks / 2);
                 break;
             }
+            case Ability.SLOW:
+            {
+                mover.NormalMove(moveDir);
+                yield return new WaitForSeconds(moveTicks * 2);
+                break;
+            }
+            case Ability.FREEZE:
+            {
+                yield return new WaitForSeconds(moveTicks);
+                break;
+            }
+            case Ability.ASSGROW:
+            {
+                mover.AssGrowMove(moveDir);
+                yield return new WaitForSeconds(moveTicks);
+                break;
+            }
         }
+        checkPowerups();
+        if(state != Ability.REWIND) addHisory();
         StartCoroutine(MovePlayer());
     }
 
     private void addHisory()
-    {
-        // as long as we aren't rewining keep track of our movement history
-        if (state != Ability.REWIND)
-        {
-            history.Insert(0, mover.GetSnake());
-        }
+    { 
+        history.Insert(0, mover.GetSnake());
     }
 
     private void checkPowerups()

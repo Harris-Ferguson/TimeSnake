@@ -46,6 +46,21 @@ public class MovementManager : MonoBehaviour
         }
     }
 
+    public void AssGrowMove(Vector2 moveDir)
+    {
+        Vector2 savePos = transform.position;
+        transform.Translate(moveDir * gridSize);
+        if (ate)
+        {
+            ate = false;
+        }
+        if(tail.Count > 0)
+        {
+            GameObject newPart = Instantiate(tailPrefab, savePos, Quaternion.identity);
+            tail.Insert(0, newPart.transform);
+        }
+    }
+
     // Deletes our current position and renders the given snake as a list of positions
     public void RenderSnake(List<Transform> snake)
     {
