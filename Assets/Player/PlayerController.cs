@@ -159,6 +159,7 @@ public class PlayerController : MonoBehaviour
         else if (collision.gameObject.CompareTag("Snake"))
         {
             state = Ability.DEAD;
+            print("Hit a snake piece!");
         }
     }
 
