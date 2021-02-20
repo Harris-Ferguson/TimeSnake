@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     
     public MovementManager mover;
-    public int powerupsMax;
+    public int powerupsMax = 3;
     public int rewindFrames = 3;
     public int poweredUpFrames = 30;
     public float moveTicks = 0.5f;
@@ -32,6 +32,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         HandleInput();
+        foreach(PowerUp power in powerups)
+        {
+            print(power.type);
+        }
+        print(powerups.Count);
     }
 
     private void FixedUpdate()
@@ -93,6 +98,11 @@ public class PlayerController : MonoBehaviour
                 yield return new WaitForSeconds(moveTicks);
                 break;
             }
+            case Ability.DEAD:
+            {
+                yield return new WaitForSeconds(moveTicks);
+                break;
+            }
         }
         checkPowerups();
         if(state != Ability.REWIND) addHisory();
@@ -118,6 +128,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void dead()
+    {
+
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //collect power ups
@@ -140,6 +155,10 @@ public class PlayerController : MonoBehaviour
                 powerups.Add(new PowerUp(powerup.type));
             }
             Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Snake"))
+        {
+            state = Ability.DEAD;
         }
     }
 
@@ -171,8 +190,9 @@ public class PlayerController : MonoBehaviour
             {
                 state = Ability.REWIND;
                 StartCoroutine(rewind(rewindFrames, 0.2f));
+                powerups.Clear();
             }
-            if(powerups.Count <= 0)
+            else if(powerups.Count <= 0)
             {
                 return;
             }
@@ -181,6 +201,7 @@ public class PlayerController : MonoBehaviour
                 state = currentPowerup.type;
                 poweredUp = true;
                 currentPoweredFrame = 0;
+                powerups.Clear();
             }
         }
     }
