@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     private List<PowerUp> powerups = new List<PowerUp>();
     private PowerUp lastPowerUp;
 
+    private List<List<Transform>> history = new List<List<Transform>>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,8 +31,11 @@ public class PlayerController : MonoBehaviour
 
     public void MovePlayer()
     {
-        print(moveDir);
-       mover.NormalMove(moveDir);
+        mover.NormalMove(moveDir);
+
+
+
+        history.Add(mover.GetSnake());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

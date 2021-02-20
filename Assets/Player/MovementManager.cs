@@ -46,9 +46,33 @@ public class MovementManager : MonoBehaviour
         }
     }
 
+    // Deletes our current position and renders the given snake as a list of positions
+    public void RenderSnake(List<Transform> snake)
+    {
+        // delete the current snake
+        foreach(Transform pos in tail)
+        {
+            Destroy(pos.gameObject);
+        }
+        //move our head
+        transform.SetPositionAndRotation(snake[0].position, Quaternion.identity);
+        snake.RemoveAt(0);
+        foreach(Transform pos in snake)
+        {
+            GameObject newPart = Instantiate(tailPrefab, pos.position, Quaternion.identity);
+            tail.Insert(0, newPart.transform);
+        }
+    }
 
     public void SetAte()
     {
         ate = true;
+    }
+
+    public List<Transform> GetSnake()
+    {
+        List<Transform> snake = tail;
+        snake.Insert(0, transform);
+        return snake;
     }
 }
