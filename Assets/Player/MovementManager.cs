@@ -54,6 +54,7 @@ public class MovementManager : MonoBehaviour
         {
             Destroy(pos.gameObject);
         }
+        tail.Clear();
         //move our head
         transform.SetPositionAndRotation(snake[0].position, Quaternion.identity);
         snake.RemoveAt(0);
@@ -71,8 +72,16 @@ public class MovementManager : MonoBehaviour
 
     public List<Transform> GetSnake()
     {
-        List<Transform> snake = tail;
-        snake.Insert(0, transform);
+        List<Transform> snake = new List<Transform>();
+        GameObject saveHead = new GameObject();
+        saveHead.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+        snake.Insert(0, saveHead.transform);
+        foreach(Transform pos in tail)
+        {
+            GameObject newObj = new GameObject();
+            newObj.transform.SetPositionAndRotation(pos.transform.position, Quaternion.identity);
+            snake.Add(newObj.transform);
+        }
         return snake;
     }
 }

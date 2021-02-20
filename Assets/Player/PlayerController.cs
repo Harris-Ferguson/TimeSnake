@@ -11,11 +11,13 @@ public class PlayerController : MonoBehaviour
     private PowerUp lastPowerUp;
 
     private List<List<Transform>> history = new List<List<Transform>>();
+    private Ability state = Ability.NONE;
 
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("MovePlayer", 0, 0.5f);
+        state = Ability.NONE;
     }
 
     // Update is called once per frame
@@ -29,13 +31,36 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    private IEnumerator rewind(int steps, float stepTime)
+    {
+        while(steps > 0 && history.Count > 0)
+        {
+            mover.RenderSnake(history[0]);
+            history.RemoveAt(0);
+            steps--;
+            yield return new WaitForSeconds(stepTime);
+        }
+        state = Ability.NONE;
+    }
+
     public void MovePlayer()
     {
-        mover.NormalMove(moveDir);
-
-
-
-        history.Add(mover.GetSnake());
+        switch (state)
+        {
+            case Ability.NONE:
+            {
+                mover.NormalMove(moveDir);
+                break;
+            }
+            case Ability.REWIND:
+            {
+                break;
+            }
+        }
+        if (state != Ability.REWIND)
+        {
+            history.Insert(0, mover.GetSnake());
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -51,6 +76,8 @@ public class PlayerController : MonoBehaviour
 
     private void HandleInput()
     {
+    
+        //Movement Input
         if(Input.GetAxis("Horizontal") < 0)
         {
             moveDir = Vector2.left;
@@ -66,6 +93,13 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetAxis("Vertical") < 0)
         {
             moveDir = Vector2.down;
+        }
+
+        //ability input
+        if (Input.GetButtonDown("Fire1"))
+        {
+            state = Ability.REWIND;
+            StartCoroutine(rewind(5, 0.2f));
         }
     }
 }
