@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     public int rewindFrames = 3;
     public int poweredUpFrames = 30;
     public float moveTicks = 0.5f;
+    public string verticalInputName;
+    public string horizontalInputName;
+    public string inputFireName;
 
 
     private Vector2 moveDir;
@@ -167,25 +170,25 @@ public class PlayerController : MonoBehaviour
     {
     
         //Movement Input
-        if(Input.GetAxis("Horizontal") < 0)
+        if(Input.GetAxis(horizontalInputName) < 0)
         {
             moveDir = Vector2.left;
         }
-        else if(Input.GetAxis("Horizontal") > 0)
+        else if(Input.GetAxis(horizontalInputName) > 0)
         {
             moveDir = Vector2.right;
         }
-        else if(Input.GetAxis("Vertical") > 0)
+        else if(Input.GetAxis(verticalInputName) > 0)
         {
             moveDir = Vector2.up;
         }
-        else if (Input.GetAxis("Vertical") < 0)
+        else if (Input.GetAxis(verticalInputName) < 0)
         {
             moveDir = Vector2.down;
         }
 
         //ability input
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown(inputFireName))
         {
             if(powerups.Count < powerupsMax && powerups.Count > 0)
             {
