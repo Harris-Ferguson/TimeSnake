@@ -187,6 +187,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void fullRewind()
+    {
+        StartCoroutine(rewind(history.Count, 0.2f));
+    }
+
     private void HandleInput()
     {
     
