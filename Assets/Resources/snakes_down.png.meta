@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 34245c55305e6e64eaacefe66903ec1a
 TextureImporter:
   internalIDToNameTable:
@@ -62,6 +63,11 @@ TextureImporter:
   - first:
       213: 1372259510174612019
     second: snakes_down_19
+=======
+guid: 24cc649c96e9e4e9282252120fabad76
+TextureImporter:
+  internalIDToNameTable: []
+>>>>>>> 6f83b8e9836abca28a20c92ac8d23110d6d7ce81
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -100,7 +106,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
+<<<<<<< HEAD
   spriteMode: 2
+=======
+  spriteMode: 1
+>>>>>>> 6f83b8e9836abca28a20c92ac8d23110d6d7ce81
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -131,6 +141,7 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+<<<<<<< HEAD
   - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
@@ -578,6 +589,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+=======
+  spriteSheet:
+    serializedVersion: 2
+    sprites: []
+>>>>>>> 6f83b8e9836abca28a20c92ac8d23110d6d7ce81
     outline: []
     physicsShape: []
     bones: []
