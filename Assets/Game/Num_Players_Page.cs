@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Num_Players_Page : MonoBehaviour
 {
@@ -12,19 +13,20 @@ public class Num_Players_Page : MonoBehaviour
     void OnMouseUp(){
         if(is2)
         {
-            Application.LoadLevel(1);
+            LevelManager.numPlayers = 2;
         }
         else if (is3)
         {
-            Application.LoadLevel(1);
+            LevelManager.numPlayers = 3;
         }
         else if (is4)
         {
-            Application.LoadLevel(1);
+            LevelManager.numPlayers = 4;
         }
         else if (isBack)
         {
-            Application.LoadLevel(0);
+            SceneManager.LoadScene("MainMenu");
         }
+        SceneManager.LoadScene("Game");
     } 
 }
