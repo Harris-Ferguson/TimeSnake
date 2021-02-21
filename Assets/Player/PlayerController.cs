@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
 
 
     private Vector2 moveDir;
-    private SpriteRenderer sprite;
     private List<PowerUp> powerups = new List<PowerUp>();
     private PowerUp currentPowerup;
     private List<List<Transform>> history = new List<List<Transform>>();
@@ -30,7 +29,6 @@ public class PlayerController : MonoBehaviour
     {
         state = Ability.NONE;
         currentPowerup = gameObject.AddComponent<PowerUp>();
-        sprite = transform.Find("Sprite").GetComponent<SpriteRenderer>();
         StartCoroutine(MovePlayer());
     }
 
