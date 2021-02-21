@@ -19,9 +19,10 @@ public class PlayerController : MonoBehaviour
     private List<PowerUp> powerups = new List<PowerUp>();
     private PowerUp currentPowerup;
     private List<List<Transform>> history = new List<List<Transform>>();
-    private Ability state = Ability.NONE;
+    public Ability state = Ability.NONE;
     private bool poweredUp;
     private int currentPoweredFrame;
+    private int currentRewindFrame;
 
     // Start is called before the first frame update
     void Start()
@@ -42,20 +43,8 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    private IEnumerator rewind(int steps, float stepTime)
-    {
-        while(steps > 0 && history.Count > 0)
-        {
-            mover.RenderSnake(history[0]);
-            history.RemoveAt(0);
-            steps--;
-            yield return new WaitForSeconds(stepTime);
-        }
-        state = Ability.NONE;
-    }
-
     public IEnumerator MovePlayer()
-    { 
+    {
         switch (state)
         {
             case Ability.NONE:
@@ -66,6 +55,13 @@ public class PlayerController : MonoBehaviour
             }
             case Ability.REWIND:
             {
+                mover.RenderSnake(history[0]);
+                history.RemoveAt(0);
+                currentRewindFrame--;
+                if(currentRewindFrame <= 0)
+                {
+                    state = Ability.NONE;
+                }
                 yield return new WaitForSeconds(moveTicks);
                 break;
             }
@@ -154,6 +150,7 @@ public class PlayerController : MonoBehaviour
         // die if we hit a non head part of any snake
         else if (collision.gameObject.CompareTag("Tail"))
         {
+            print("tail death");
             die();
         }
         else if (collision.gameObject.CompareTag("Snake"))
@@ -161,6 +158,7 @@ public class PlayerController : MonoBehaviour
             int otherLength = collision.gameObject.GetComponent<MovementManager>().snakeLength();
             if(otherLength >= this.mover.snakeLength())
             {
+                print("snake death");
                 die();
             }
             else
@@ -211,7 +209,8 @@ public class PlayerController : MonoBehaviour
 
     public void fullRewind()
     {
-        StartCoroutine(rewind(history.Count, 0.2f));
+        state = Ability.REWIND;
+        currentRewindFrame = history.Count;
     }
 
     private void HandleInput()
@@ -241,7 +240,7 @@ public class PlayerController : MonoBehaviour
             if(powerups.Count < powerupsMax && powerups.Count > 0)
             {
                 state = Ability.REWIND;
-                StartCoroutine(rewind(rewindFrames, 0.2f));
+                currentRewindFrame = rewindFrames;
                 powerups.Clear();
             }
             else if(powerups.Count <= 0)
