@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PowerUpSpawner : MonoBehaviour
 {
-    public GameObject FREEZE, ASSGROW, BLUESHELL, FAST, SLOW, HEADASS;
-
+    public GameObject powerUpPrefab;
     public float spawnRate = 2f;
 
     float nextSpawn = 0.0f;
@@ -35,28 +34,45 @@ public class PowerUpSpawner : MonoBehaviour
                 whatToSpawn = Random.Range(1,100);
                 Debug.Log(whatToSpawn);
 
-                if(whatToSpawn >0 && whatToSpawn <=5){
-                    Instantiate(FREEZE, whereToSpawn, Quaternion.identity);
+                if(whatToSpawn >0 && whatToSpawn <=5)
+                {
+                    spawnPowerUp(Ability.FREEZE);
+                }
 
-                }else if(whatToSpawn >5 && whatToSpawn <=20){
-                    Instantiate(ASSGROW, whereToSpawn, Quaternion.identity);
 
-                }else if(whatToSpawn >20 && whatToSpawn <=30){
-                    Instantiate(BLUESHELL, whereToSpawn, Quaternion.identity);
+                else if(whatToSpawn >5 && whatToSpawn <=20)
+                {
+                    spawnPowerUp(Ability.ASSGROW);
 
-                }else if(whatToSpawn >30 && whatToSpawn <=55){
-                    Instantiate(FAST, whereToSpawn, Quaternion.identity);
+                }
+                else if(whatToSpawn >20 && whatToSpawn <=30)
+                {
+                    spawnPowerUp(Ability.BLUESHELL);
 
-                }else if(whatToSpawn >55 && whatToSpawn <=80){
-                    Instantiate(SLOW, whereToSpawn, Quaternion.identity);
+                }
+                else if(whatToSpawn >30 && whatToSpawn <=55)
+                {
+                    spawnPowerUp(Ability.FAST);
 
-                }else if(whatToSpawn >80 && whatToSpawn <=100){
-                    Instantiate(HEADASS, whereToSpawn, Quaternion.identity);
+                }
+                else if(whatToSpawn >55 && whatToSpawn <=80)
+                {
+                    spawnPowerUp(Ability.SLOW);
+
+                }
+                else if(whatToSpawn >80 && whatToSpawn <=100)
+                    {
+                    spawnPowerUp(Ability.HEADASS);
                 }
             }
-            
-
             nextSpawn = Time.time + spawnRate;
         }
+    }
+
+    public void spawnPowerUp(Ability type)
+    {
+        GameObject newObj = Instantiate(powerUpPrefab, whereToSpawn, Quaternion.identity);
+        PowerUp power = newObj.GetComponent<PowerUp>();
+        power.type = type;
     }
 }
