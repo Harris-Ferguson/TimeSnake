@@ -68,8 +68,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tailPrefab: {fileID: 7929427591167525808, guid: bce9e3958e2d64085bb88614272c0aed,
     type: 3}
-  gridSize: 1
-  tailSizeOffset: 0.3
+  gridSize: 1.16
+  tailSizeOffset: 0.5
   tail: []
 --- !u!50 &7386409336685282253
 Rigidbody2D:

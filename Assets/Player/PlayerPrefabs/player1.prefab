@@ -89,6 +89,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3408777299917151639, guid: 058415ae7007844eaa617f1a98bcbae3,
+        type: 3}
+      propertyPath: tailPrefab
+      value: 
+      objectReference: {fileID: 7929427591167525808, guid: bce9e3958e2d64085bb88614272c0aed,
+        type: 3}
     - target: {fileID: 7386409336685282249, guid: 058415ae7007844eaa617f1a98bcbae3,
         type: 3}
       propertyPath: m_Name
