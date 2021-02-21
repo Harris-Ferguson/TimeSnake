@@ -33,7 +33,6 @@ public class LevelManager : MonoBehaviour
             GameObject player = Instantiate(players[i], spawns[i], Quaternion.identity);
             activePlayers.Add(player);
         }
-        
     }
 
     // Update is called once per frame
@@ -41,29 +40,42 @@ public class LevelManager : MonoBehaviour
     {
         if (checkOver())
         {
-            if(playedRounds < totalRounds)
-            {
-                playedRounds++;
-                Scene scene = SceneManager.GetActiveScene();
-                SceneManager.LoadScene(scene.name);
-            }
-            else
-            {
-                //Load game over screen here
-            }
+           foreach(GameObject player in activePlayers)
+           {
+                PlayerController contr = player.GetComponent<PlayerController>();
+                if(contr.state != Ability.DEAD)
+                {
+                    contr.wins++;
+                }
+                if (contr.wins >= totalRounds)
+                {
+                    // Game over load
+                }
+                else
+                {
+                    Scene scene = SceneManager.GetActiveScene();
+                    SceneManager.LoadScene(scene.name);
+                }
+
+           }
         }
     }
 
     private bool checkOver()
     {
+        int livecount = 0;
         foreach(GameObject player in activePlayers)
         {
             PlayerController contr = player.GetComponent<PlayerController>();
             if(contr.state != Ability.DEAD)
             {
-                return false;
+                livecount++;
             }
         }
-        return true;
+        if(livecount <= 1)
+        {
+            return true;
+        }
+        return false;
     }
 }
