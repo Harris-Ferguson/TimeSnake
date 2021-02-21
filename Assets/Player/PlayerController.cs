@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private List<PowerUp> powerups = new List<PowerUp>();
     private PowerUp currentPowerup;
     private List<List<Transform>> history = new List<List<Transform>>();
-    private Ability state = Ability.NONE;
+    public Ability state = Ability.NONE;
     private bool poweredUp;
     private int currentPoweredFrame;
     private int currentRewindFrame;
