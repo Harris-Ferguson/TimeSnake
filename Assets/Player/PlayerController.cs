@@ -13,10 +13,11 @@ public class PlayerController : MonoBehaviour
     public string verticalInputName;
     public string horizontalInputName;
     public string inputFireName;
+    public int wins = 0;
 
 
     private Vector2 moveDir;
-    private List<PowerUp> powerups = new List<PowerUp>();
+    public List<PowerUp> powerups = new List<PowerUp>();
     private PowerUp currentPowerup;
     private List<List<Transform>> history = new List<List<Transform>>();
     public Ability state = Ability.NONE;
@@ -29,6 +30,8 @@ public class PlayerController : MonoBehaviour
     {
         state = Ability.NONE;
         currentPowerup = gameObject.AddComponent<PowerUp>();
+
+        //find the sprite renderer
         StartCoroutine(MovePlayer());
     }
 
@@ -150,7 +153,6 @@ public class PlayerController : MonoBehaviour
         // die if we hit a non head part of any snake
         else if (collision.gameObject.CompareTag("Tail"))
         {
-            print("tail death");
             die();
         }
         else if (collision.gameObject.CompareTag("Snake"))
@@ -158,7 +160,6 @@ public class PlayerController : MonoBehaviour
             int otherLength = collision.gameObject.GetComponent<MovementManager>().snakeLength();
             if(otherLength >= this.mover.snakeLength())
             {
-                print("snake death");
                 die();
             }
             else

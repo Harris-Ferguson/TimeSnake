@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
 
     private GameObject[] players;
     private Vector2[] spawns = new Vector2[4];
-    private List<GameObject> activePlayers = new List<GameObject>();
+    public List<GameObject> activePlayers = new List<GameObject>();
     public static int playedRounds = 0;
     public static int numPlayers = 2;
     public static int totalRounds = 3;
