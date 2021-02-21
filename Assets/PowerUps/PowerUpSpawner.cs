@@ -26,12 +26,8 @@ public class PowerUpSpawner : MonoBehaviour
     void Update()
     {
         if(Time.time > nextSpawn){
-            //Random rnd = new Random();
-            //randX = rnd.Next(0,7);
-            //randY = rnd.Next(0,7);
             randX = Random.Range(0,8);
             randY = Random.Range(0,8);
-
 
             whereToSpawn = new Vector2((float)PossibleX[randX], (float)PossibleY[randY]);
             
@@ -44,7 +40,6 @@ public class PowerUpSpawner : MonoBehaviour
             }
             if(free == true){
                 whatToSpawn = Random.Range(1,100);
-                Debug.Log(whatToSpawn);
 
                 if(whatToSpawn >0 && whatToSpawn <=5)
                 {
@@ -85,6 +80,29 @@ public class PowerUpSpawner : MonoBehaviour
     {
         GameObject newObj = Instantiate(powerUpPrefab, whereToSpawn, Quaternion.identity);
         PowerUp power = newObj.GetComponent<PowerUp>();
+        SpriteRenderer sprite = newObj.GetComponent<SpriteRenderer>();
+        Sprite[] sprites = Resources.LoadAll<Sprite>("misc assets");
+        switch (type)
+        {
+            case Ability.FREEZE:
+                sprite.sprite = sprites[13];
+                break;
+            case Ability.HEADASS:
+                sprite.sprite = sprites[18];
+                break;
+            case Ability.BLUESHELL:
+                sprite.sprite = sprites[15];
+                break;
+            case Ability.FAST:
+                sprite.sprite = sprites[16];
+                break;
+            case Ability.SLOW:
+                sprite.sprite = sprites[17];
+                break;
+            case Ability.ASSGROW:
+                sprite.sprite = sprites[14];
+                break;
+        }
         power.type = type;
     }
 }

@@ -12,6 +12,8 @@ public class PowerUp : MonoBehaviour
 
     public Ability type;
 
+    private SpriteRenderer sprite;
+
     public PowerUp(Ability type)
     {
         this.type = type;
@@ -20,7 +22,8 @@ public class PowerUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        sprite = gameObject.GetComponent<SpriteRenderer>();
+
     }
 
     // Update is called once per frame
