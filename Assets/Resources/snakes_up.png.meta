@@ -1,7 +1,73 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 111ad3cc23031764386d33c5eed3263c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -598627748029444434
+    second: snakes_up_0
+  - first:
+      213: 1316545265785151592
+    second: snakes_up_1
+  - first:
+      213: -7351787336078519792
+    second: snakes_up_2
+  - first:
+      213: 8153907600565834895
+    second: snakes_up_3
+  - first:
+      213: -2438089212250492972
+    second: snakes_up_4
+  - first:
+      213: -2279882804886469407
+    second: snakes_up_5
+  - first:
+      213: -1368773525082286577
+    second: snakes_up_6
+  - first:
+      213: 1178561342805166334
+    second: snakes_up_7
+  - first:
+      213: -2112550173406419233
+    second: snakes_up_8
+  - first:
+      213: -2617458089750932307
+    second: snakes_up_9
+  - first:
+      213: -8877795768878805479
+    second: snakes_up_10
+  - first:
+      213: 5280370601313336078
+    second: snakes_up_11
+  - first:
+      213: -5065272009186003151
+    second: snakes_up_12
+  - first:
+      213: 7330705608337482415
+    second: snakes_up_13
+  - first:
+      213: 7032627179109807934
+    second: snakes_up_14
+  - first:
+      213: 5555402636440970731
+    second: snakes_up_15
+  - first:
+      213: -1010216511361372790
+    second: snakes_up_16
+  - first:
+      213: 5953375335814908136
+    second: snakes_up_17
+  - first:
+      213: 289379285104045492
+    second: snakes_up_18
+  - first:
+      213: -5162527256717143609
+    second: snakes_up_19
+=======
 guid: f1b7606a34ed94e02859e26d1ea14806
 TextureImporter:
   internalIDToNameTable: []
+>>>>>>> 6f83b8e9836abca28a20c92ac8d23110d6d7ce81
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,7 +106,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
+<<<<<<< HEAD
+  spriteMode: 2
+=======
   spriteMode: 1
+>>>>>>> 6f83b8e9836abca28a20c92ac8d23110d6d7ce81
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -71,9 +141,459 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+<<<<<<< HEAD
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: snakes_up_0
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 921
+        width: 126
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eae430e1c3f31b7f0800000000000000
+      internalID: -598627748029444434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snakes_up_1
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 924
+        width: 125
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 860a8d1a1fe454210800000000000000
+      internalID: 1316545265785151592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snakes_up_2
+      rect:
+        serializedVersion: 2
+        x: 838
+        y: 923
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01213d88e5439f990800000000000000
+      internalID: -7351787336078519792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snakes_up_3
+      rect:
+        serializedVersion: 2
+        x: 1073
+        y: 923
+        width: 123
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f84951fe2cf782170800000000000000
+      internalID: 8153907600565834895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snakes_up_4
+      rect:
+        serializedVersion: 2
+        x: 1307
+        y: 924
+        width: 123
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dfe81d67ca2a2ed0800000000000000
+      internalID: -2438089212250492972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snakes_up_5
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 690
+        width: 126
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e488351baa3c50e0800000000000000
+      internalID: -2279882804886469407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snakes_up_6
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 693
+        width: 125
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f06d2832bb3210de0800000000000000
+      internalID: -1368773525082286577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snakes_up_7
+      rect:
+        serializedVersion: 2
+        x: 838
+        y: 692
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef8c8e70c471b5010800000000000000
+      internalID: 1178561342805166334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snakes_up_8
+      rect:
+        serializedVersion: 2
+        x: 1073
+        y: 692
+        width: 123
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd6abef5fc6bea2e0800000000000000
+      internalID: -2112550173406419233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snakes_up_9
+      rect:
+        serializedVersion: 2
+        x: 1307
+        y: 693
+        width: 123
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da45ce93cbbecabd0800000000000000
+      internalID: -2617458089750932307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snakes_up_10
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 459
+        width: 126
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91e4387e8cbbbc480800000000000000
+      internalID: -8877795768878805479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snakes_up_11
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 463
+        width: 125
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0b72b5d515a74940800000000000000
+      internalID: 5280370601313336078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snakes_up_12
+      rect:
+        serializedVersion: 2
+        x: 838
+        y: 461
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1373db1d1f984b9b0800000000000000
+      internalID: -5065272009186003151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snakes_up_13
+      rect:
+        serializedVersion: 2
+        x: 1073
+        y: 461
+        width: 123
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa26be939e5ebb560800000000000000
+      internalID: 7330705608337482415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snakes_up_14
+      rect:
+        serializedVersion: 2
+        x: 1307
+        y: 463
+        width: 123
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e37f890b829e89160800000000000000
+      internalID: 7032627179109807934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snakes_up_15
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 230
+        width: 126
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be525599341c81d40800000000000000
+      internalID: 5555402636440970731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snakes_up_16
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 232
+        width: 125
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8d221e6f6dfaf1f0800000000000000
+      internalID: -1010216511361372790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snakes_up_17
+      rect:
+        serializedVersion: 2
+        x: 838
+        y: 231
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e8c1d95353ae9250800000000000000
+      internalID: 5953375335814908136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snakes_up_18
+      rect:
+        serializedVersion: 2
+        x: 1073
+        y: 231
+        width: 123
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bdabf53de4140400800000000000000
+      internalID: 289379285104045492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snakes_up_19
+      rect:
+        serializedVersion: 2
+        x: 1307
+        y: 232
+        width: 123
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c15a10ffc40b58b0800000000000000
+      internalID: -5162527256717143609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+=======
   spriteSheet:
     serializedVersion: 2
     sprites: []
+>>>>>>> 6f83b8e9836abca28a20c92ac8d23110d6d7ce81
     outline: []
     physicsShape: []
     bones: []
