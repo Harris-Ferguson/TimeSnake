@@ -152,6 +152,7 @@ public class PlayerController : MonoBehaviour
         // die if we hit a non head part of any snake
         else if (collision.gameObject.CompareTag("Tail"))
         {
+            print("tail death");
             die();
         }
         else if (collision.gameObject.CompareTag("Snake"))
@@ -159,6 +160,7 @@ public class PlayerController : MonoBehaviour
             int otherLength = collision.gameObject.GetComponent<MovementManager>().snakeLength();
             if(otherLength >= this.mover.snakeLength())
             {
+                print("snake death");
                 die();
             }
             else

@@ -32,7 +32,8 @@ public class MovementManager : MonoBehaviour
         if (ate)
         {
             //first add a new body part to the snake
-            createTail(savePos);
+            GameObject newTail = createTail(savePos);
+            tail.Insert(0, newTail.transform);
 
             // reset the ate flag
             ate = false;
@@ -56,7 +57,8 @@ public class MovementManager : MonoBehaviour
         }
         if(tail.Count > 0)
         {
-            createTail(savePos);
+            GameObject newTail = createTail(savePos);
+            tail.Insert(0, newTail.transform);
         }
     }
 
@@ -74,7 +76,8 @@ public class MovementManager : MonoBehaviour
         snake.RemoveAt(0);
         foreach(Transform pos in snake)
         {
-            createTail(pos.position);
+            GameObject newTail = createTail(pos.position);
+            tail.Add(newTail.transform);
         }
     }
 
@@ -98,12 +101,12 @@ public class MovementManager : MonoBehaviour
         return snake;
     }
 
-    private void createTail(Vector2 pos)
+    private GameObject createTail(Vector2 pos)
     {
         GameObject newTail = Instantiate(tailPrefab, pos, Quaternion.identity);
         BoxCollider2D collider = newTail.GetComponent<BoxCollider2D>();
         collider.size = new Vector2(gridSize - tailSizeOffset, gridSize - tailSizeOffset);
-        tail.Insert(0, newTail.transform);
+        return newTail;
     }
 
     public int snakeLength()
