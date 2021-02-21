@@ -11,17 +11,29 @@ public class PowerUpSpawner : MonoBehaviour
 
     int whatToSpawn;
 
-    float randX;
-    float randY;
+    int randX;
+    int randY;
+
+    Random Xgen;
+    Random Ygen;
+
     Vector2 whereToSpawn;
+
+    double[] PossibleX = {-4.07, -2.9, -1.76, -0.62, 0.55, 1.7, 2.89, 4.05};
+    double[] PossibleY = {4.09, 2.93, 1.73, 0.6, -0.6, -1.76, -2.88, -4.02};
 
     // Update is called once per frame
     void Update()
     {
         if(Time.time > nextSpawn){
-            randX = Random.Range(20f, -20f);
-            randY = Random.Range(20f, -20f);
-            whereToSpawn = new Vector2(randX, randY);
+            //Random rnd = new Random();
+            //randX = rnd.Next(0,7);
+            //randY = rnd.Next(0,7);
+            randX = Random.Range(0,8);
+            randY = Random.Range(0,8);
+
+
+            whereToSpawn = new Vector2((float)PossibleX[randX], (float)PossibleY[randY]);
             
             GameObject[] list = GameObject.FindGameObjectsWithTag("PowerUp");
             bool free = true;
