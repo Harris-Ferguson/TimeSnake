@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         state = Ability.NONE;
-        currentPowerup = new PowerUp(Ability.NONE);
+        currentPowerup = gameObject.AddComponent<PowerUp>();
         StartCoroutine(MovePlayer());
     }
 
@@ -87,6 +87,7 @@ public class PlayerController : MonoBehaviour
             }
             case Ability.FREEZE:
             {
+                disableHitboxes();
                 yield return new WaitForSeconds(moveTicks);
                 break;
             }
@@ -122,6 +123,7 @@ public class PlayerController : MonoBehaviour
             {
                 poweredUp = false;
                 state = Ability.NONE;
+                enableHitboxes();
             }
         }
     }
@@ -175,6 +177,12 @@ public class PlayerController : MonoBehaviour
         state = Ability.DEAD;
 
         //disable collision boxes
+        disableHitboxes();
+
+    }
+
+    private void disableHitboxes()
+    {
         BoxCollider2D[] hitboxes = GetComponents<BoxCollider2D>();
         foreach(BoxCollider2D hitbox in hitboxes)
         {
@@ -184,6 +192,20 @@ public class PlayerController : MonoBehaviour
         {
             BoxCollider2D hitbox = tailPiece.GetComponent<BoxCollider2D>();
             hitbox.enabled = false;
+        }
+    }
+
+    private void enableHitboxes()
+    {
+        BoxCollider2D[] hitboxes = GetComponents<BoxCollider2D>();
+        foreach(BoxCollider2D hitbox in hitboxes)
+        {
+            hitbox.enabled = true;
+        }
+        foreach(Transform tailPiece in mover.tail)
+        {
+            BoxCollider2D hitbox = tailPiece.GetComponent<BoxCollider2D>();
+            hitbox.enabled = true;
         }
     }
 
