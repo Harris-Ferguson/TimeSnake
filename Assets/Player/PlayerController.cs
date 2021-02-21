@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 moveDir;
     public List<PowerUp> powerups = new List<PowerUp>();
-    private PowerUp currentPowerup;
+    public PowerUp currentPowerup;
     private List<List<Transform>> history = new List<List<Transform>>();
     public Ability state = Ability.NONE;
     private bool poweredUp;
@@ -136,17 +136,18 @@ public class PlayerController : MonoBehaviour
             mover.SetAte();
             if(currentPowerup.type == Ability.NONE)
             {
-                currentPowerup = new PowerUp(powerup.type);
-                powerups.Add(new PowerUp(powerup.type));
+                currentPowerup.type = powerup.type;
+                powerups.Add(powerup);
             }
             else if(powerup.type == currentPowerup.type && powerups.Count < powerupsMax)
             {
-                powerups.Add(new PowerUp(powerup.type));
+                powerups.Add(powerup);
             }
-            else
+            else if(powerup.type != currentPowerup.type || powerups.Count >= powerupsMax) 
             {
                 powerups.Clear();
-                powerups.Add(new PowerUp(powerup.type));
+                currentPowerup.type = powerup.type;
+                powerups.Add(powerup);
             }
             Destroy(collision.gameObject);
         }
