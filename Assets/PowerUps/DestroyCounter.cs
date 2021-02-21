@@ -7,6 +7,6 @@ public class DestroyCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Destroy(gameObject, 10f);
+        Destroy(gameObject, 15f);
     }
 }
