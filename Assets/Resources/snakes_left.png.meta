@@ -1,5 +1,4 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 932828fdf1e93374dbd6ea356f5aa855
 TextureImporter:
   internalIDToNameTable:
@@ -63,11 +62,6 @@ TextureImporter:
   - first:
       213: 6022857791361838926
     second: snakes_left_19
-=======
-guid: 5f6494b222b034033acdd2e3e5bd1a21
-TextureImporter:
-  internalIDToNameTable: []
->>>>>>> 6f83b8e9836abca28a20c92ac8d23110d6d7ce81
   externalObjects: {}
   serializedVersion: 11
   mipmaps:

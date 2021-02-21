@@ -95,6 +95,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7929427591167525808, guid: bce9e3958e2d64085bb88614272c0aed,
         type: 3}
+    - target: {fileID: 3408777299917151639, guid: 058415ae7007844eaa617f1a98bcbae3,
+        type: 3}
+      propertyPath: rightSprite
+      value: 
+      objectReference: {fileID: 2816066146850159425, guid: 12095535c4d61954c90cd60e41c9c5b5,
+        type: 3}
     - target: {fileID: 7386409336685282249, guid: 058415ae7007844eaa617f1a98bcbae3,
         type: 3}
       propertyPath: m_Name
