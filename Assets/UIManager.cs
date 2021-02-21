@@ -23,7 +23,6 @@ public class UIManager : MonoBehaviour
             PlayerController player = level.activePlayers[i-1].GetComponent<PlayerController>();
             GameObject playerui = ui.transform.Find("player" + i.ToString()).gameObject;
 
-
             //set the power up indicator
             GameObject powerUpIndicator = playerui.transform.Find("powerup").gameObject;
             SpriteRenderer pUsprite = powerUpIndicator.GetComponent<SpriteRenderer>();
