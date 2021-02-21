@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
     void OnMouseUp(){
         if(isStart)
         {
-            Application.LoadLevel(1);
+            Application.LoadLevel(3);
         }
         else if (isQuit)
         {

@@ -27,9 +27,6 @@ public class PowerUpSpawner : MonoBehaviour
     void Update()
     {
         if(Time.time > nextSpawn){
-            //Random rnd = new Random();
-            //randX = rnd.Next(0,7);
-            //randY = rnd.Next(0,7);
             randX = Random.Range(0,8);
             randY = Random.Range(0,8);
 
@@ -43,6 +40,22 @@ public class PowerUpSpawner : MonoBehaviour
                     free = false;
                 }
             }
+
+            list = GameObject.FindGameObjectsWithTag("Snake");
+            foreach (GameObject part in list){
+                if(((part.transform.position.x - whereToSpawn.x <= .40 ) && (part.transform.position.x- whereToSpawn.x >= -.40)) && ((part.transform.position.y- whereToSpawn.y <= .40 ) && (part.transform.position.y - whereToSpawn.y >= - .40))){
+                    free = false;
+                }
+            }
+
+            list = GameObject.FindGameObjectsWithTag("Tail");
+            foreach (GameObject part in list){
+                if((part.transform.position.x- whereToSpawn.x <= .40 && part.transform.position.x- whereToSpawn.x >= - .40) && (part.transform.position.y- whereToSpawn.y <= .40 && part.transform.position.y - whereToSpawn.y >= - .40)){
+                    free = false;
+                }
+            }
+
+
             if(free == true){
                 whatToSpawn = Random.Range(1,100);
                 Debug.Log(whatToSpawn);
