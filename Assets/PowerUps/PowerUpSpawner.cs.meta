@@ -3,7 +3,13 @@ guid: 39925585beae4d543963a85442e3ecf5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - FREEZE: {instanceID: 0}
+  - ASSGROW: {instanceID: 0}
+  - BLUESHELL: {instanceID: 0}
+  - FAST: {instanceID: 0}
+  - SLOW: {instanceID: 0}
+  - HEADASS: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
