@@ -28,6 +28,7 @@ public class MovementManager : MonoBehaviour
     {
         Vector2 savePos = transform.position;
         transform.Translate(moveDir * gridSize);
+
         // if we have a tail move the last element to the front
         if (ate)
         {
